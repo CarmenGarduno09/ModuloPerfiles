@@ -14,15 +14,15 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<?php echo base_url(); ?>/assets/ModuloPerfiles/css/styles.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>assets/ModuloPerfiles/css/styles.css" rel="stylesheet" />
          <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/ModuloPerfiles/assets/assets/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#">UTC</a>
+                <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/index">UTC</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div style="padding-right: 20px;">
-                <a href="user.html"><img src="assets/assets/img/user.png" width="40px" height="40px"></a>
+                <a href="user.html"><img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/images.png" width="40px" height="40px"></a>
             </div>
         </nav>
         <!-- Portfolio Section-->
@@ -64,7 +64,7 @@
                 <div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">
                     <div class="row" style="background-color: #8baf9c;">
                         <div class="col-md-2" style="background-color: white;padding-top: 10px;">
-                            <img src="assets/assets/img/user_f.png" width="150px" height="150px">
+                            <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/user_f.png" width="150px" height="150px">
                         </div>
                         <div class="col-md-1">
 
