@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div style="padding-right: 20px;">
-                <a href="user.html"><img src="assets/assets/img/user.png" width="40px" height="40px"></a>
+                <a href="user.html"><img src="<?php echo base_url();?>assets/ModuloPerfiles/assets/assets/img/user.png" width="40px" height="40px"></a>
             </div>
         </nav>
         <!-- Portfolio Section-->
