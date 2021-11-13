@@ -8,10 +8,31 @@ class ModuloPerfiles extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
 		$this->load->model('Modelo_ModuloPerfiles');
   }
-
-	
+    
 	public function index()
 	{
 		$this->load->view('templates/perfiles/modulo_perfiles');
 	}
+
+	//área Maury
+	
+
+
+	//--Fin área Maury
+
+
+	
+	//área Jessi
+	
+
+
+	//--Fin área Jessi
+
+
+
+	//área Carmen
+	
+
+
+	//--Fin área Carmen
 }

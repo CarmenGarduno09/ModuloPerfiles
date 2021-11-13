@@ -12,4 +12,26 @@ class Modelo_ModuloPerfiles extends CI_Model{
 		$this->load->helper('date');
 		$this->load->helper('text');
     }
+
+	//área Maury
+	
+
+
+	//--Fin área Maury
+
+
+	
+	//área Jessi
+	
+
+
+	//--Fin área Jessi
+
+
+
+	//área Carmen
+	
+
+
+	//--Fin área Carmen
 }
