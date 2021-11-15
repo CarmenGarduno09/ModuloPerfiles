@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">######</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="perfiles.html">Perfiles</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<?php echo base_url()?>/perfles_usuario">Perfiles</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">######</a></li>
                     </ul>
                 </div>
@@ -46,10 +46,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4" style="padding-right: 10px;padding-left: 10px;padding-top: 10px;padding-bottom: 10px; background-color: #8baf9c;">
-                        <div class="input-group">
-                            <input type="text" class="form-control">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                          </div>
+                        <h3>Mis perfiles</h3>
                     </div>
                     <div class="col-md-4">
                     </div>
