@@ -70,7 +70,7 @@
 
                         </div>
                         <div class="col-md-9" style="background-color: white;">
-                            <h3>Lorem ipsum </h3>
+                            <h3>Lorem ipsum M4 </h3>
                             <p style="font-size: 18px;">
                                 Dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.</p>
                                 <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">Ver perfil</button><br>&nbsp;
