@@ -15,7 +15,11 @@ class ModuloPerfiles extends CI_Controller {
 	}
 
 	//área Maury
-	
+	public function perfiles_usuario(){
+		$data['perfiles']=$this->Modelo_ModuloPerfiles->traer_perfiles_usuario();
+		$data['carreras']=$this->Modelo_ModuloPerfiles->traer_carreras();
+		$this->load->view('templates/perfiles/modulo_perfiles_user',$data);
+	}
 
 
 	//--Fin área Maury
