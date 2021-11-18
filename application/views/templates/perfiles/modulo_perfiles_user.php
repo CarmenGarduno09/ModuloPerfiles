@@ -167,11 +167,16 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px">
+                                <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px"><br><br>
+                                <button class="btn btn-success" onclick="view_pf(<?php echo $p->id_perfil;?>);">Cambiar foto</button><br>
+                                <div id="ch_pf-<?php echo $p->id_perfil;?>" style="display: none;">
+                                    <label>Selecciona foto:</label><br>
+                                    <input type="file" name="new_pf-<?php echo $p->id_perfil;?>" id="new_pf-<?php echo $p->id_perfil;?>">
+                                </div>
                             </div>
                             <div class="col-md-9">
                                 <h3>Nombre: <?php echo $p->Nombre." ".$p->Apellidos;?></h3>
-                                <h3>Carrera: <?php echo $p->Nombre_c;?></h3><select class="form-control" name="carrera" id="carrera">
+                                <h3>Carrera: <?php echo $p->Nombre_c;?></h3><select class="form-control" name="carrera-<?php echo $p->id_perfil;?>" id="carrera-<?php echo $p->id_perfil;?>">
                                         <option>Elige una carrera</option>
                                         <?php 
                                             foreach($carreras as $c){
@@ -188,23 +193,25 @@
                     <div class="col-md-12">
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Perfil</h3>
-                            <textarea rows="5" cols="10" name="descripcion" id="descripcion" class="form-control"><?php echo $p->Descripcion;?></textarea>
+                            <textarea rows="5" cols="10" name="descripcion-<?php echo $p->id_perfil;?>" id="descripcion-<?php echo $p->id_perfil;?>" class="form-control"><?php echo $p->Descripcion;?></textarea>
                             <br>&nbsp;
                         </div>
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Contacto</h3>
                             <ul>
-                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio: <input type="text" name="direccion" id="direccion" class="form-control" value="<?php echo $p->Direccion;?>"></li><br>
-                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo: <input type="text" name="correo" id="correo" class="form-control" value="<?php echo $p->correo;?>"></li><br>
-                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono: <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $p->telefono;?>"></li><br>
+                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio: <input type="text" name="direccion-<?php echo $p->id_perfil;?>" id="direccion-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->Direccion;?>"></li><br>
+                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo: <input type="text" name="correo-<?php echo $p->id_perfil;?>" id="correo-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->correo;?>"></li><br>
+                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono: <input type="text" name="telefono-<?php echo $p->id_perfil;?>" id="telefono-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->telefono;?>"></li><br>
                             </ul>
                         </div>
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>CV Completo</h3>
-                            <embed src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>#toolbar=0&navpanes=1&scrollbar=0" type="application/pdf" width="75%" height="450" />
-                            <a class="btn btn-danger btn-lg" href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a>
+                            <embed src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>#toolbar=0&navpanes=1&scrollbar=0" type="application/pdf" width="75%" height="450" /><br>
+                            <a class="btn btn-danger btn-lg" href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a><br><br>
+                            <label>Subir nuevo CV:</label>
+                            <input type="file" name="new_cv-<?php echo $p->id_perfil;?>" id="new_cv-<?php echo $p->id_perfil;?>">
                             <br>&nbsp;
                             
                         </div>
@@ -267,5 +274,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/docs.min.js"></script>
+    <script>
+                                    function view_pf(num){
+                                        var v_pf=document.getElementById("ch_pf-"+num+"");
+                                        if(v_pf.style.display==="none"){
+                                            v_pf.style.display="block";
+                                        }else{
+                                            v_pf.style.display="none";
+                                        }
+                                    }
+                                </script>
     </body>
 </html>
