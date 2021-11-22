@@ -78,11 +78,8 @@
 
                         </div>
                         <div class="col-md-9" style="background-color: white;">
-<<<<<<< HEAD
                             <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
-=======
                             <h3>Lorem ipsum M4 </h3>
->>>>>>> 433df0082f2d99e35d369f5be30e5f1000b07173
                             <p style="font-size: 18px;">
                             <?php echo $p->Descripcion;?>
                             <br>
