@@ -11,7 +11,8 @@ class ModuloPerfiles extends CI_Controller {
     
 	public function index()
 	{
-		$this->load->view('templates/perfiles/modulo_perfiles');
+		$data['perfiles'] = $this->Modelo_ModuloPerfiles->traer_perfiles();
+		$this->load->view('templates/perfiles/modulo_perfiles',$data);
 	}
 
 	//área Maury
@@ -31,7 +32,12 @@ class ModuloPerfiles extends CI_Controller {
 
 
 	//área Carmen
-	
+	public function estudiantes(){
+  
+		$data['datos_popup'] = $this->Modelo_proyecto->trae_datos_est();
+  $this->load->view('templates/panel/Modulo_perfiles',$data);
+			
+	  }
 
 
 	//--Fin área Carmen

@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div style="padding-right: 20px;">
-                <a href="user.html"><img src="<?php echo base_url();?>assets/ModuloPerfiles/assets/assets/img/user.png" width="40px" height="40px"></a>
+                <a href="user.html"><img src="assets/assets/img/user.png" width="40px" height="40px"></a>
             </div>
         </nav>
         <!-- Portfolio Section-->
@@ -61,42 +61,35 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <br>
+                <?php
+              //  die(var_dump($perfiles));
+                foreach($perfiles as $p){
+
+                
+                ?>
                 <div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">
                     <div class="row" style="background-color: #8baf9c;">
                         <div class="col-md-2" style="background-color: white;padding-top: 10px;">
-                            <img src="assets/assets/img/user_f.png" width="150px" height="150px">
+                            <img src="assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px">
                         </div>
                         <div class="col-md-1">
 
                         </div>
                         <div class="col-md-9" style="background-color: white;">
-                            <h3>Lorem ipsum </h3>
+                            <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
                             <p style="font-size: 18px;">
-                                Dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.</p>
-                                <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">Ver perfil</button><br>&nbsp;
+                            <?php echo $p->Descripcion;?>
+                            <br>
+                            <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg<?php echo $p->id_perfil;?>">Ver perfil</button><br>&nbsp;
                                  
                         </div>
                     </div>
                 </div>
                 <div><br>&nbsp;</div>
-                <div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">
-                    <div class="row" style="background-color: #8baf9c;">
-                        <div class="col-md-2" style="background-color: white;padding-top: 10px;">
-                            <img src="assets/assets/img/user_f.png" width="150px" height="150px">
-                        </div>
-                        <div class="col-md-1">
-
-                        </div>
-                        <div class="col-md-9" style="background-color: white;">
-                            <h3>Lorem ipsum </h3>
-                            <p style="font-size: 18px;">
-                                Dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.</p>
-                                <button class="btn btn-success">Ver perfil</button><br>&nbsp;
-                        </div>
-                    </div>
-                </div><br>&nbsp;
-            </div>
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           
+           
+      
+            <div class="modal fade bs-example-modal-lg<?php echo $p->id_perfil;?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 
                 <div class="modal-dialog modal-lg">
                     
@@ -110,8 +103,8 @@
                                 <img src="assets/assets/img/user_f.png" width="150px" height="150px">
                             </div>
                             <div class="col-md-9">
-                                <h3>Nombre:</h3>
-                                <h3>Carrera:</h3>
+                                <h3>Nombre: <?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
+                                <h3>Carrera: <?php echo $p->nom_carr;?> </h3>
                             </div>
                         </div>
                     </div>
@@ -120,17 +113,16 @@
                         <button class="btn btn-success btn-lg">Solicitar</button><br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Perfil</h3>
-                            Dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. 
-                            Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+                            <?php echo $p->Descripcion;?> 
                             <br>&nbsp;
                         </div>
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Contacto</h3>
                             <ul>
-                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio:</li>
-                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo:</li>
-                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono:</li>
+                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio:<?php echo $p->Direccion;?> </li>
+                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo:<?php echo $p->correo;?></li>
+                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono:<?php echo $p->telefono;?></li>
                             </ul>
                         </div>
                         <br>&nbsp;
@@ -144,8 +136,12 @@
                     
                   </div>
                 </div>
+            
               </div>
-        
+              <?php
+                }
+                ?>
+                </div> 
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
