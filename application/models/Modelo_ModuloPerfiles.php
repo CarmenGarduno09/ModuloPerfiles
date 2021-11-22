@@ -18,7 +18,7 @@ class Modelo_ModuloPerfiles extends CI_Model{
 		//$data = $this->datos_sesion();
 		//$id_persona=$data]['id_persona'];
 		$id_persona=1;
-		$this->db->select('*');
+		$this->db->select('pa.*,p.*,c.*,c.Nombre as Nombre_c');
 		$this->db->from('perfil_alumno as pa');
 		$this->db->join('datos_usuario as p','pa.persona_id_persona = p.id_persona');
 		$this->db->join('carreras as c','pa.carreras_idcarreras = c.idcarreras');
