@@ -139,7 +139,7 @@
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>CV Completo</h3>
-                            <button class="btn btn-danger btn-lg">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></button>
+                            <a class="btn btn-danger btn-lg" href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a><br><br>
                             <br>&nbsp;
                         </div>
                         <br>&nbsp;
@@ -176,7 +176,7 @@
                             </div>
                             <div class="col-md-9">
                                 <h3>Nombre: <?php echo $p->Nombre." ".$p->Apellidos;?></h3>
-                                <h3>Carrera: <?php echo $p->Nombre_c;?></h3><select class="form-control" name="carrera-<?php echo $p->id_perfil;?>" id="carrera-<?php echo $p->id_perfil;?>">
+                                <h3>Carrera: <?php echo $p->Nombre_c;?></h3><select class="form-control" name="carrera-<?php echo $p->id_perfil;?>" id="carrera-<?php echo $p->id_perfil;?>" disabled>
                                         <option>Elige una carrera</option>
                                         <?php 
                                             foreach($carreras as $c){
@@ -193,16 +193,16 @@
                     <div class="col-md-12">
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Perfil</h3>
-                            <textarea rows="5" cols="10" name="descripcion-<?php echo $p->id_perfil;?>" id="descripcion-<?php echo $p->id_perfil;?>" class="form-control"><?php echo $p->Descripcion;?></textarea>
+                            <textarea rows="5" cols="10" name="descripcion-<?php echo $p->id_perfil;?>" id="descripcion-<?php echo $p->id_perfil;?>" class="form-control" disabled><?php echo $p->Descripcion;?></textarea>
                             <br>&nbsp;
                         </div>
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Contacto</h3>
                             <ul>
-                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio: <input type="text" name="direccion-<?php echo $p->id_perfil;?>" id="direccion-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->Direccion;?>"></li><br>
-                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo: <input type="text" name="correo-<?php echo $p->id_perfil;?>" id="correo-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->correo;?>"></li><br>
-                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono: <input type="text" name="telefono-<?php echo $p->id_perfil;?>" id="telefono-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->telefono;?>"></li><br>
+                                <li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio: <input type="text" name="direccion-<?php echo $p->id_perfil;?>" id="direccion-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->Direccion;?>" disabled></li><br>
+                                <li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo: <input type="text" name="correo-<?php echo $p->id_perfil;?>" id="correo-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->correo;?>" disabled></li><br>
+                                <li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono: <input type="text" name="telefono-<?php echo $p->id_perfil;?>" id="telefono-<?php echo $p->id_perfil;?>" class="form-control" value="<?php echo $p->telefono;?>" disabled></li><br>
                             </ul>
                         </div>
                         <br>&nbsp;
@@ -211,9 +211,11 @@
                             <embed src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>#toolbar=0&navpanes=1&scrollbar=0" type="application/pdf" width="75%" height="450" /><br>
                             <a class="btn btn-danger btn-lg" href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a><br><br>
                             <label>Subir nuevo CV:</label>
-                            <input type="file" name="new_cv-<?php echo $p->id_perfil;?>" id="new_cv-<?php echo $p->id_perfil;?>">
+                            <form method="post" action="cambiar_cv/<?php echo $p->id_perfil;?>" enctype="multipart/form-data">
+                            <input type="file" name="new_cv-<?php echo $p->id_perfil;?>" id="new_cv-<?php echo $p->id_perfil;?>"><br>
+                            <input type="submit" value = "Cambiar CV" name="btn_arc" class="btn" style="background-color: skyblue;">
+                            </form>
                             <br>&nbsp;
-                            
                         </div>
                         <br>&nbsp;
                     </div>
@@ -275,6 +277,7 @@
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/docs.min.js"></script>
     <script>
+        $(document).ready(function(e){});
                                     function view_pf(num){
                                         var v_pf=document.getElementById("ch_pf-"+num+"");
                                         if(v_pf.style.display==="none"){
