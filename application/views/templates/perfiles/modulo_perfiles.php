@@ -22,7 +22,9 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#">UTC</a>
+            <div style="border-radius: 250px;background-color:white; padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;">
+                <a href="<?php echo base_url(); ?>index.php/index"><img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/logo_utc.png" width="100px" height="45px"></a>
+                </div>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -76,7 +78,11 @@
 
                         </div>
                         <div class="col-md-9" style="background-color: white;">
+<<<<<<< HEAD
                             <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
+=======
+                            <h3>Lorem ipsum M4 </h3>
+>>>>>>> 433df0082f2d99e35d369f5be30e5f1000b07173
                             <p style="font-size: 18px;">
                             <?php echo $p->Descripcion;?>
                             <br>
@@ -143,41 +149,38 @@
                 ?>
                 </div> 
         <!-- Footer-->
-        <footer class="footer text-center">
+        <footer class="footer text-center" style="background-color: #008037;">
             <div class="container">
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
-                        <p class="lead mb-0">
-                            2215 John Daniel Drive
-                            <br />
-                            Clark, MO 65243
-                        </p>
+                    <div style="border-radius: 250px;background-color:white; padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;">
+                    <a href="<?php echo base_url(); ?>index.php/index"><img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/logo_utc.png" width="160px" height="70px"></a>
+                    </div>
                     </div>
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <h4 class="text-uppercase mb-4">Redes Sociales</h4>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-instagram"></i></a>
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                        <h4 class="text-uppercase mb-4">Dirección</h4>
                         <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                            .
+                            Carretera Santa Barbara - Coroneo
+                            Km. 11.2 Corregidora, Qro. México.</a>
+                            
                         </p>
                     </div>
                 </div>
             </div>
         </footer>
         <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+        <div class="copyright py-4 text-center text-white" style="background-color:darkgreen;">
+            <div class="container"><small>Copyright &copy; Universidad Tecnológica de Corregidora 2021</small></div>
         </div>
         
         
