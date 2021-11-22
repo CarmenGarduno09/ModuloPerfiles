@@ -181,7 +181,7 @@
                                         <?php 
                                             foreach($carreras as $c){
                                         ?>
-                                            <option value="<?php echo $c->idcarreras?>" <?php if($c->idcarreras==$p->carreras_idcarreras){echo "selected";}?>><?php echo $c->Nombre_c?></option>
+                                            <option value="<?php echo $c->idcarreras?>" <?php if($c->idcarreras==$p->carreras_idcarreras){echo "selected";}?>><?php echo $c->Nombre;?></option>
                                         <?php
                                             }
                                         ?>
