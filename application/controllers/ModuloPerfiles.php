@@ -21,6 +21,13 @@ class ModuloPerfiles extends CI_Controller {
 		$data['carreras']=$this->Modelo_ModuloPerfiles->traer_carreras();
 		$this->load->view('templates/perfiles/modulo_perfiles_user',$data);
 	}
+	public function cambiar_cv(){
+		$data['perfiles']=$this->Modelo_ModuloPerfiles->traer_perfiles_usuario();
+		$data['carreras']=$this->Modelo_ModuloPerfiles->traer_carreras();
+		$tipo = "new_cv-".$this->uri->segment(3);
+		$this->Modelo_ModuloPerfiles->cambiar_cv($tipo,$this->uri->segment(3));
+		header('Location:'.base_url('index.php/ModuloPerfiles/perfiles_usuario'));
+	}
 
 
 	//--Fin área Maury

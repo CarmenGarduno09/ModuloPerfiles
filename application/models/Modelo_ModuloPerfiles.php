@@ -23,6 +23,7 @@ class Modelo_ModuloPerfiles extends CI_Model{
 		$this->db->join('datos_usuario as p','pa.persona_id_persona = p.id_persona');
 		$this->db->join('carreras as c','pa.carreras_idcarreras = c.idcarreras');
 		$this->db->where('pa.persona_id_persona',$id_persona);
+		$this->db->order_by('Activo','DESC');
 		$query = $this->db->get();
 			return $query->result();
 	}
@@ -32,7 +33,29 @@ class Modelo_ModuloPerfiles extends CI_Model{
 		$query = $this->db->get();
 			return $query->result();
 	}
-
+	function cambiar_cv($cv,$id_perfil){
+		if($_FILES [$cv]['name']){
+			$nombre_img=$_FILES [$cv]['name'];
+			$config['upload_path'] = 'assets/ModuloPerfiles/assets/assets/files/';
+			$config['allowed_types'] = 'pdf';
+			$config['max_size'] = "5120";
+			$this->upload->initialize($config);
+			if($this->upload->do_upload($cv)){
+				$data = array(
+					"cv"=>$nombre_img
+				);
+				$this->db->where('id_perfil',$id_perfil);
+					$this->db->update('perfil_alumno',$data);
+					return "OK";
+			}else{
+				$this->session->set_flashdata('mensaje_error',$this->upload->display_errors());
+				return FALSE;
+			}
+		}else{
+			return FALSE;
+		}
+		
+	}
 
 	//--Fin área Maury
 
