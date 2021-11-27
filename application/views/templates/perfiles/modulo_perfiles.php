@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div style="padding-right: 20px;">
-                <a href="user.html"><img src="assets/assets/img/user.png" width="40px" height="40px"></a>
+            <a href="user.html"><img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/user.png" width="40px" height="40px"></a>
             </div>
         </nav>
         <!-- Portfolio Section-->
@@ -66,13 +66,13 @@
                 <?php
               //  die(var_dump($perfiles));
                 foreach($perfiles as $p){
-
+                    if($p->Activo!=0){
                 
                 ?>
                 <div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">
                     <div class="row" style="background-color: #8baf9c;">
                         <div class="col-md-2" style="background-color: white;padding-top: 10px;">
-                            <img src="assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px">
+                        <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/user_f.png" width="150px" height="150px">
                         </div>
                         <div class="col-md-1">
 
@@ -82,7 +82,7 @@
                             <h4>Carrera:  <?php echo $p->nom_carr ;?></h4>
                             <p style="font-size: 18px;">
                             <?php echo $p->Descripcion;?>
-                            <br>
+                            <br><br>
                             <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg<?php echo $p->id_perfil;?>">Ver perfil</button><br>&nbsp;
                                  
                         </div>
@@ -103,7 +103,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="assets/assets/img/user_f.png" width="150px" height="150px">
+                            <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px">
                             </div>
                             <div class="col-md-9">
                                 <h3>Nombre: <?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
@@ -113,7 +113,7 @@
                     </div>
                     <br>
                     <div class="col-md-12">
-                        <button class="btn btn-success btn-lg">Solicitar</button><br>&nbsp;
+                        <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal-<?php echo $p->id_perfil;?>">Solicitar</button><br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>Perfil</h3>
                             <?php echo $p->Descripcion;?> 
@@ -131,7 +131,7 @@
                         <br>&nbsp;
                         <div class="col-md-12" style="background-color: #8baf9c;">
                             <h3>CV Completo</h3>
-                            <button class="btn btn-danger btn-lg">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></button>
+                            <a class="btn btn-danger btn-lg" href="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/files/<?php echo $p->cv;?>" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a><br><br>
                             <br>&nbsp;
                         </div>
                         <br>&nbsp;
@@ -141,9 +141,44 @@
                 </div>
             
               </div>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal-<?php echo $p->id_perfil;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-<?php echo $p->id_perfil;?>" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel-<?php echo $p->id_perfil;?>">Formulario de contacto</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label>Empresa</label>
+                                    <input type="text" name="empresa-<?php echo $p->id_perfil;?>" id="empresa-<?php echo $p->id_perfil;?>" class="form-control" placeholder="Ingresa nombre de la empresa">
+                                    <label>Puesto solicitado</label>
+                                    <input type="text" name="puesto-<?php echo $p->id_perfil;?>" id="puesto-<?php echo $p->id_perfil;?>" class="form-control" placeholder="Ingresa puesto solicitado">
+                                    <label>Correo electrónico</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">@</span>
+                                        <input type="email" class="form-control" name="correo_e-<?php echo $p->id_perfil;?>" id="correo_e-<?php echo $p->id_perfil;?>" placeholder="Ingresa tu correo">
+                                        <input type="hidden" class="form-control" name="correo_d-<?php echo $p->id_perfil;?>" id="correo_d-<?php echo $p->id_perfil;?>" value="<?php echo $p->correo;?>">
+                                    </div>
+                                    
+                                    <label>Asunto</label>
+                                    <input type="text" class="form-control" name="subject-<?php echo $p->id_perfil;?>" id="subject-<?php echo $p->id_perfil;?>" placeholder="Ingresa asunto">
+                                    <label>Mensaje</label>
+                                    <textarea rows="5" cols="10" name="cuerpo-<?php echo $p->id_perfil;?>" id="cuerpo-<?php echo $p->id_perfil;?>" class="form-control"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="enviar_email(<?php echo $p->id_perfil;?>);">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
               <?php
+                    }
                 }
+
                 ?>
+                
                 </div> 
         <!-- Footer-->
         <footer class="footer text-center" style="background-color: #008037;">
@@ -195,5 +230,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/js/docs.min.js"></script>
+    <script>
+        function enviar_email(id){
+            var correo_d=document.getElementById('correo_d-'+id).value;
+            alert(correo_d);
+            location.reload();
+        }
+    </script>
     </body>
 </html>
