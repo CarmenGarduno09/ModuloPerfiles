@@ -78,8 +78,8 @@
 
                         </div>
                         <div class="col-md-9" style="background-color: white;">
-                            <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
-                            <h3>Lorem ipsum M4 </h3>
+                            <h3><?php echo $p->nombre_us." ".$p->Apellidos;?> </h3>
+                            <h4>Carrera:  <?php echo $p->nom_carr ;?></h4>
                             <p style="font-size: 18px;">
                             <?php echo $p->Descripcion;?>
                             <br>
