@@ -106,7 +106,7 @@
                             <img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/<?php echo $p->Foto;?>" width="150px" height="150px">
                             </div>
                             <div class="col-md-9">
-                                <h3>Nombre: <?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
+                                <h3>Nombre: <?php echo $p->nombre_us." ".$p->Apellidos;?> </h3>
                                 <h3>Carrera: <?php echo $p->nom_carr;?> </h3>
                             </div>
                         </div>
@@ -146,29 +146,29 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <button type="button" class="close" data-dismiss="modal" onclick="location.reload()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                                     <h4 class="modal-title" id="myModalLabel-<?php echo $p->id_perfil;?>">Formulario de contacto</h4>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" id="mensaje-<?php echo $p->id_perfil;?>">
                                     <label>Empresa</label>
                                     <input type="text" name="empresa-<?php echo $p->id_perfil;?>" id="empresa-<?php echo $p->id_perfil;?>" class="form-control" placeholder="Ingresa nombre de la empresa">
-                                    <label>Puesto solicitado</label>
-                                    <input type="text" name="puesto-<?php echo $p->id_perfil;?>" id="puesto-<?php echo $p->id_perfil;?>" class="form-control" placeholder="Ingresa puesto solicitado">
+                                    
                                     <label>Correo electrónico</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">@</span>
                                         <input type="email" class="form-control" name="correo_e-<?php echo $p->id_perfil;?>" id="correo_e-<?php echo $p->id_perfil;?>" placeholder="Ingresa tu correo">
                                         <input type="hidden" class="form-control" name="correo_d-<?php echo $p->id_perfil;?>" id="correo_d-<?php echo $p->id_perfil;?>" value="<?php echo $p->correo;?>">
+                                        <input type="hidden" class="form-control" name="name-<?php echo $p->id_perfil;?>" id="name-<?php echo $p->id_perfil;?>" value="<?php echo $p->nombre_us;?>">
                                     </div>
                                     
                                     <label>Asunto</label>
-                                    <input type="text" class="form-control" name="subject-<?php echo $p->id_perfil;?>" id="subject-<?php echo $p->id_perfil;?>" placeholder="Ingresa asunto">
+                                    <input type="text" class="form-control" name="asunto-<?php echo $p->id_perfil;?>" id="asunto-<?php echo $p->id_perfil;?>" placeholder="Ingresa asunto">
                                     <label>Mensaje</label>
                                     <textarea rows="5" cols="10" name="cuerpo-<?php echo $p->id_perfil;?>" id="cuerpo-<?php echo $p->id_perfil;?>" class="form-control"></textarea>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" id="boton-<?php echo $p->id_perfil;?>">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="enviar_email(<?php echo $p->id_perfil;?>);">Enviar</button>
+                                    <button type="button" class="btn btn-primary" onclick='enviar_email(<?php echo $p->id_perfil;?>);'>Enviar</button>
                                 </div>
                             </div>
                         </div>
@@ -233,8 +233,50 @@
     <script>
         function enviar_email(id){
             var correo_d=document.getElementById('correo_d-'+id).value;
+            var correo_e=document.getElementById('correo_e-'+id).value;
+            var empresa=document.getElementById('empresa-'+id).value;
+            var asunto=document.getElementById('asunto-'+id).value;
+            var mensaje=document.getElementById('cuerpo-'+id).value;
+            var name=document.getElementById('name-'+id).value;
             alert(correo_d);
-            location.reload();
+            $.ajax({
+                    type       : "POST",
+                    url        : 'index.php/ModuloPerfiles/enviar_email', //script que traerá los datos en el servidor
+                    data:({correo_d:correo_d,correo_e:correo_e,empresa:empresa,asunto:asunto,mensaje:mensaje,id_a:id,nom:name}),
+                    cache:false,
+                    dataType:"text",
+                    success:respuestaEnvio,
+                    error      : function() {
+                        alert('Error: Error en la consulta de datos ');
+                    }
+            });
+            function respuestaEnvio(data){
+                alert(data);
+                if(data=="OK"){
+                    alert("se envío el mensaje")
+                        $('#mensaje-'+id).empty();
+                        $('#boton-'+id).empty();
+                        $('#mensaje-'+id).append('<center><img src="http://localhost/ModuloPerfiles/assets/ModuloPerfiles/assets/img/icono-check.png" width="75px" height="75px">'+
+                        '<br>'+
+                        '<h3>La solicitud ha sido enviada</h3></center>');
+                        $('#boton-'+id).append('<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">Close</button>');
+                        $('#mensaje-'+id).trigger('create');
+                        $('#boton-'+id).trigger('create');
+                    
+                }else{
+                    alert("no se envío el mensaje")
+                    $('#mensaje-'+id).empty();
+                    $('#boton-'+id).empty();
+                    $('#mensaje-'+id).append('<center><img src="http://localhost/ModuloPerfiles//assets/ModuloPerfiles/assets/img/error.png" width="75px" height="75px">'+
+                        '<br>'+
+                        '<h3>Error en la solicitud</h3></center>');
+                        $('#boton-'+id).append('<button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload()">Close</button>');
+                        $('#mensaje-'+id).trigger('create');
+                        $('#boton-'+id).trigger('create');
+                    
+                }
+            }
+            
         }
     </script>
     </body>

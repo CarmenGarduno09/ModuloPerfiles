@@ -56,6 +56,9 @@ class Modelo_ModuloPerfiles extends CI_Model{
 		}
 		
 	}
+	function insertar_reporte($data){
+		$this->db->insert('reportes',$data);
+	}
 
 	//--Fin área Maury
 
