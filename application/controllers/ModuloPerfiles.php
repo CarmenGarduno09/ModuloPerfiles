@@ -28,6 +28,44 @@ class ModuloPerfiles extends CI_Controller {
 		$this->Modelo_ModuloPerfiles->cambiar_cv($tipo,$this->uri->segment(3));
 		header('Location:'.base_url('index.php/ModuloPerfiles/perfiles_usuario'));
 	}
+	public function enviar_email(){
+		$this->load->library('email');
+		$htmlContent = '<h1> Estimado '.$this->input->post('nom').'</h1>';
+		$htmlContent .= '<p>'.$this->input->post('mensaje').'.</p>';
+			
+		$config['mailtype'] = 'html';
+		$this->email->initialize($config);
+		$this->email->from($this->input->post('correo_e'),$this->input->post('empresa'));
+		$this->email->to($this->input->post('correo_d'));
+		$this->email->subject($this->input->post('asunto'));
+		$this->email->message($htmlContent);
+		if($this->email->send()){
+			$data = array(
+				'numero' => 'REP',
+				'activo' => 1,
+				'tipo' => '1',
+				'status' => 'In progress',
+				'nombre_empresa' => $this->input->post('empresa'),
+				'perfil_alumno_id_perfil' => $this->input->post('id_a')
+			);
+			if($this->Modelo_ModuloPerfiles->insertar_reporte($data)){
+				echo "OK";
+			}else echo "NO";
+			
+		}else{
+			$data = array(
+				'numero' => 'REP',
+				'activo' => 1,
+				'tipo' => '1',
+				'status' => 'In progress',
+				'nombre_empresa' => $this->input->post('empresa'),
+				'perfil_alumno_id_perfil' => $this->input->post('id_a')
+			);
+			if($this->Modelo_ModuloPerfiles->insertar_reporte($data)){
+				echo "OK";
+			}else echo "NO";
+		} 
+	}
 
 
 	//--Fin área Maury
