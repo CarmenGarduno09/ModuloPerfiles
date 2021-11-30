@@ -37,9 +37,6 @@
                     </ul>
                 </div>
             </div>
-            <div style="padding-right: 20px;">
-            <a href="user.html"><img src="<?php echo base_url(); ?>/assets/ModuloPerfiles/assets/assets/img/user.png" width="40px" height="40px"></a>
-            </div>
         </nav>
         <!-- Portfolio Section-->
             <div class="container" style="background-color: rgb(241, 241, 241); padding-top: 30px;">
@@ -49,9 +46,18 @@
                     </div>
                     <div class="col-md-4" style="padding-right: 10px;padding-left: 10px;padding-top: 10px;padding-bottom: 10px; background-color: #8baf9c;">
                         <div class="input-group">
-                            <input type="text" class="form-control">
+                        <select class="form-control" name="carrera" id="carrera" onchange="ver_perfiles(this.value);">
+                                        <option>Elige una carrera</option>
+                                        <?php 
+                                            foreach($carreras as $c){
+                                        ?>
+                                            <option value="<?php echo $c->idcarreras?>"><?php echo $c->Nombre;?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                </select>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                          </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                     </div>
@@ -63,12 +69,16 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <br>
+                <div id="datos_perfiles">
                 <?php
               //  die(var_dump($perfiles));
                 foreach($perfiles as $p){
                     if($p->Activo!=0){
                 
                 ?>
+                <div class="col-md-12">
+                    <center><h3>Todos los perfiles</h3></center>
+                </div>
                 <div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">
                     <div class="row" style="background-color: #8baf9c;">
                         <div class="col-md-2" style="background-color: white;padding-top: 10px;">
@@ -178,8 +188,9 @@
                 }
 
                 ?>
-                
-                </div> 
+            
+                </div>
+        </div> 
         <!-- Footer-->
         <footer class="footer text-center" style="background-color: #008037;">
             <div class="container">
@@ -238,7 +249,6 @@
             var asunto=document.getElementById('asunto-'+id).value;
             var mensaje=document.getElementById('cuerpo-'+id).value;
             var name=document.getElementById('name-'+id).value;
-            alert(correo_d);
             $.ajax({
                     type       : "POST",
                     url        : 'index.php/ModuloPerfiles/enviar_email', //script que traerá los datos en el servidor
@@ -251,7 +261,6 @@
                     }
             });
             function respuestaEnvio(data){
-                alert(data);
                 if(data=="OK"){
                     alert("se envío el mensaje")
                         $('#mensaje-'+id).empty();
@@ -277,6 +286,140 @@
                 }
             }
             
+        }
+        function ver_perfiles(carrera){
+            $.ajax({
+                    type       : "POST",
+                    url        : 'index.php/ModuloPerfiles/traer_perfiles_carrera', //script que traerá los datos en el servidor
+                    data:({id_carrera:carrera}),
+                    cache:false,
+                    dataType:"json",
+                    success:respuestaEnvio,
+                    error      : function() {
+                        alert('Error: Error en la consulta de datos ');
+                    }
+            });
+            function respuestaEnvio(data){
+                if(JSON.stringify(data)=='[]'){
+                    $("#datos_perfiles").empty();
+                    $("#datos_perfiles").append('<center><h2>No hay perfiles disponibles para esta carrera</h2></center><br><hr>');
+                    $("#datos_perfiles").trigger('create');
+                }else{
+                    $("#datos_perfiles").empty();
+                    $(data).each(function(index, data){
+                        if(data.activo!=0){
+                            $("#datos_perfiles").append('<div class="col-md-12">'+
+                    '<center><h3>'+data.nom_carr+'</h3></center>'+
+                '</div>'+
+                '<div class="col-md-12" style="background-color: #8baf9c;padding-left: 35px;padding-right: 35px;padding-top: 35px;padding-bottom: 35px;">'+
+                    '<div class="row" style="background-color: #8baf9c;">'+
+                        '<div class="col-md-2" style="background-color: white;padding-top: 10px;">'+
+                        '<img src="http://localhost/ModuloPerfiles/assets/ModuloPerfiles/assets/assets/img/user_f.png" width="150px" height="150px">'+
+                        '</div>'+
+                        '<div class="col-md-1">'+
+                        '</div>'+
+                        '<div class="col-md-9" style="background-color: white;">'+
+                            '<h3>'+data.nombre_us+' '+data.Apellidos+'</h3>'+
+                            '<h4>Carrera: '+data.nom_carr+'</h4>'+
+                            '<p style="font-size: 18px;">'+
+                            data.Descripcion+
+                            '<br><br>'+
+                            '<button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg'+data.id_perfil+'">Ver perfil</button><br>&nbsp;'+
+                                 
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div><br>&nbsp;</div>'+
+           
+           
+      
+            '<div class="modal fade bs-example-modal-lg'+data.id_perfil+'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'+
+                
+                '<div class="modal-dialog modal-lg">'+
+                    
+                  '<div class="modal-content">'+
+                    '<div class="modal-header">'+
+                        '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+
+                    '</div>'+
+                    '<div class="col-md-12">'+
+                        '<div class="row">'+
+                            '<div class="col-md-3">'+
+                            '<img src="http://localhost/ModuloPerfiles/assets/ModuloPerfiles/assets/assets/img/'+data.Foto+'" width="150px" height="150px">'+
+                            '</div>'+
+                            '<div class="col-md-9">'+
+                                '<h3>Nombre: '+data.nombre_us+' '+data.Apellidos+'</h3>'+
+                                '<h3>Carrera: '+data.nom_carr+' </h3>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                   '<br>'+
+                    '<div class="col-md-12">'+
+                        '<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal-'+data.id_perfil+'">Solicitar</button><br>&nbsp;'+
+                        '<div class="col-md-12" style="background-color: #8baf9c;">'+
+                            '<h3>Perfil</h3>'+
+                            data.Descripcion+
+                            '<br>&nbsp;'+
+                        '</div>'+
+                        '<br>&nbsp;'+
+                        '<div class="col-md-12" style="background-color: #8baf9c;">'+
+                            '<h3>Contacto</h3>'+
+                            '<ul>'+
+                                '<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Domicilio:'+data.Direccion+' </li>'+
+                                '<li><span class="glyphicon glyphicon-envelope"></span>&nbsp;Correo:'+data.correo+'</li>'+
+                                '<li><span class="glyphicon glyphicon-earphone"></span>&nbsp;Teléfono:'+data.telefono+'</li>'+
+                            '</ul>'+
+                        '</div>'+
+                        '<br>&nbsp;'+
+                        '<div class="col-md-12" style="background-color: #8baf9c;">'+
+                            '<h3>CV Completo</h3>'+
+                            '<a class="btn btn-danger btn-lg" href="http://localhost/ModuloPerfiles/assets/ModuloPerfiles/assets/assets/files/'+data.cv+'" target="_blank">Ver CV &nbsp;<span class="glyphicon glyphicon-new-window"></span></a><br><br>'+
+                            '<br>&nbsp;'+
+                        '</div>'+
+                        '<br>&nbsp;'+
+                    '</div>'+
+                    
+                  '</div>'+
+                '</div>'+
+            
+              '</div>'+
+              '<div class="modal fade" id="myModal-'+data.id_perfil+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-'+data.id_perfil+'" aria-hidden="true">'+
+                        '<div class="modal-dialog">'+
+                            '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                    '<button type="button" class="close" data-dismiss="modal" onclick="location.reload()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+
+                                    '<h4 class="modal-title" id="myModalLabel-'+data.id_perfil+'">Formulario de contacto</h4>'+
+                                '</div>'+
+                                '<div class="modal-body" id="mensaje-'+data.id_perfil+'">'+
+                                    '<label>Empresa</label>'+
+                                    '<input type="text" name="empresa-'+data.id_perfil+'" id="empresa-'+data.id_perfil+'" class="form-control" placeholder="Ingresa nombre de la empresa">'+
+                                    
+                                    '<label>Correo electrónico</label>'+
+                                    '<div class="input-group">'+
+                                        '<span class="input-group-addon">@</span>'+
+                                        '<input type="email" class="form-control" name="correo_e-'+data.id_perfil+'" id="correo_e-'+data.id_perfil+'" placeholder="Ingresa tu correo">'+
+                                        '<input type="hidden" class="form-control" name="correo_d-'+data.id_perfil+'" id="correo_d-'+data.id_perfil+'" value="'+data.correo+'">'+
+                                        '<input type="hidden" class="form-control" name="name-'+data.id_perfil+'" id="name-'+data.id_perfil+'" value="'+data.nombre_us+'">'+
+                                    '</div>'+
+                                    
+                                    '<label>Asunto</label>'+
+                                    '<input type="text" class="form-control" name="asunto-'+data.id_perfil+'" id="asunto-'+data.id_perfil+'" placeholder="Ingresa asunto">'+
+                                    '<label>Mensaje</label>'+
+                                    '<textarea rows="5" cols="10" name="cuerpo-'+data.id_perfil+'" id="cuerpo-'+data.id_perfil+'" class="form-control"></textarea>'+
+                                '</div>'+
+                                '<div class="modal-footer" id="boton-'+data.id_perfil+'">'+
+                                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
+                                    '<button type="button" class="btn btn-primary" onclick="enviar_email('+data.id_perfil+')">Enviar</button>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>');
+                        }
+                        
+                    });
+                    $("#datos_perfiles").trigger('create');
+                }
+                
+            }
         }
     </script>
     </body>

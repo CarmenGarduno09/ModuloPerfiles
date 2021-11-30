@@ -49,7 +49,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4" style="background-color: #8baf9c; border-radius:0.5em;">
-                        <center><h2 style="color:white;">Mis perfiles</h2></center>
+                        <center><h2 style="color:white;">Mi perfil</h2></center>
                     </div>
                     <div class="col-md-4">
                     </div>
@@ -75,6 +75,32 @@
                         <div class="col-md-1">
 
                         </div>
+                        
+                        <?php 
+                            if($p->Activo==0){                      
+                        ?>
+                        <div class="col-md-6" style="background-color: white;">
+                            <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
+                            <p style="font-size: 18px;">
+                                <?php echo $p->Descripcion;?></p>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <a class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-<?php echo $p->id_perfil;?>">Vista previa</a><br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="col-md-1">
+                                        <a class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg-e-<?php echo $p->id_perfil;?>">Editar</a><br>&nbsp;
+                                    </div>
+                                </div>
+                                 
+                        </div>
+                        <div class="col-md-3" style="background-color: white;">
+                        <br>
+                            <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;  Tu perfil ha sido revisado y solicitado, se te ha enviado un correo con la solicitud por parte de la emppresa.</div>
+                        </div>
+                        <?php
+                            }else{
+                        ?>
                         <div class="col-md-9" style="background-color: white;">
                             <h3><?php echo $p->Nombre." ".$p->Apellidos;?> </h3>
                             <p style="font-size: 18px;">
@@ -89,6 +115,9 @@
                                 </div>
                                  
                         </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                     
                 </div>

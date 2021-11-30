@@ -59,6 +59,15 @@ class Modelo_ModuloPerfiles extends CI_Model{
 	function insertar_reporte($data){
 		$this->db->insert('reportes',$data);
 	}
+	function traer_perfiles_carreras($id){
+		$this->db->select('pa.*,du.*,car.*,car.Nombre as nom_carr, du.Nombre as nombre_us');
+        $this->db->from('perfil_alumno as pa');
+		$this->db->join('datos_usuario as du','pa.persona_id_persona = du.id_persona');
+		$this->db->join('carreras as car','car.idcarreras = carreras_idcarreras');
+		$this->db->where('pa.carreras_idcarreras',$id);
+		$query = $this->db->get();
+			return $query->result();
+	}
 
 	//--Fin área Maury
 

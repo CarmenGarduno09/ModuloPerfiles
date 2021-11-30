@@ -12,6 +12,7 @@ class ModuloPerfiles extends CI_Controller {
 	public function index()
 	{
 		$data['perfiles'] = $this->Modelo_ModuloPerfiles->traer_perfiles();
+		$data['carreras']=$this->Modelo_ModuloPerfiles->traer_carreras();
 		$this->load->view('templates/perfiles/modulo_perfiles',$data);
 	}
 
@@ -66,7 +67,13 @@ class ModuloPerfiles extends CI_Controller {
 			}else echo "NO";
 		} 
 	}
+	public function traer_perfiles_carrera(){
 
+		$perfiles = $this->Modelo_ModuloPerfiles->traer_perfiles_carreras($this->input->post('id_carrera'));
+		//die(var_dump($perfiles));
+		$jsonatring = json_encode($perfiles);
+    	echo $jsonatring;
+	}
 
 	//--Fin área Maury
 
@@ -84,9 +91,10 @@ class ModuloPerfiles extends CI_Controller {
 	public function estudiantes(){
   
 		$data['datos_popup'] = $this->Modelo_proyecto->trae_datos_est();
-  $this->load->view('templates/panel/Modulo_perfiles',$data);
+		$data['carreras']=$this->Modelo_ModuloPerfiles->traer_carreras();
+  		$this->load->view('templates/panel/Modulo_perfiles',$data);
 			
-	  }
+	}
 
 
 	//--Fin área Carmen
